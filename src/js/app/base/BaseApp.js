@@ -1,5 +1,7 @@
 import page from 'page';
 
+import Schedule from 'js/utils/Schedule';
+
 import BaseControllerManager from "./BaseControllerManager";
 
 export default class BaseApp {
@@ -25,12 +27,6 @@ export default class BaseApp {
          * @public
          */
         this.debug = true;
-
-        /**
-         * @type {Object}
-         * @private
-         */
-        this._processQueue = $.Queue();
 
         /**
          *
@@ -92,9 +88,9 @@ export default class BaseApp {
      * @private
      */
     _safeBoot() {
-        let queue = $.Queue();
-        queue.append( this._fx[ 'none --> none' ]( null, null, null, null, this.controllerManager ) );
-        queue.promise.done( () => {
+        let schedule = new Schedule();
+        schedule.add( this._fx[ 'none --> none' ]( null, null, null, null, this.controllerManager ) );
+        schedule.done( () => {
             this.controllerManager.use( 'current' ).viewDidAppear();
         } );
     }
@@ -114,7 +110,7 @@ export default class BaseApp {
             fx = prev + ' --> ' + next,
             nfx = '* --> ' + next,
             all = '* --> *',
-            q = $.Queue(),
+            q = new Schedule(),
             self = this;
 
         $.each( [ fx, bfx, nfx, all ], function( _, value ) {
@@ -123,12 +119,14 @@ export default class BaseApp {
                     console.log( '%c' + value, 'color: #03A9F4;' );
                     console.group( '%cViewController', 'color: #00C853;' );
                 }
-                q.append( self._fx[ value ]( prev, next, $newContent, params, self.controllerManager ) );
+                q.add( resolve => {
+                    self._fx[ value ]( prev, next, $newContent, params, self.controllerManager, resolve )();
+                } );
                 return false;
             }
         } );
 
-        q.promise.done( data => {
+        q.done( data => {
             dfd.resolve( data );
             if ( self.debug ) {
 
@@ -160,14 +158,16 @@ export default class BaseApp {
         if ( !this.pageInitialized ) return;
 
         this._addRequestQueue( {
-            from: this._prev,
-            to: ctx
+            from : this._prev,
+            to : ctx
         } );
-
-        let _ = this;
-        _._processQueue.append( function() {
-            _._pageChange.call( this, _ );
-        } );
+        this._pageChange( this );
+        
+        // let _ = this;
+        // _._processQueue.add( function() {
+        //     _._pageChange( this );
+        // } );
+        
     }
 
     /**
@@ -220,7 +220,6 @@ export default class BaseApp {
             //process.push(_scrollToTop());
         }
 
-
         $( 'body' ).addClass( 'bq-page-changing' );
 
         process.unshift( $.get( params.to.path ).promise() );
@@ -230,12 +229,10 @@ export default class BaseApp {
                 _res = res[ 0 ];
             }
 
-
             _._showPage( _res, params ).done( dfd.resolve );
             _._current = params.to;
-
             // ga('send','pageview', params.to.path);
-            _.sendAnalytics( params.to.path );
+            // _.sendAnalytics( params.to.path );
         } ).fail( function( res ) {
             _._showPage( res.responseText, params ).done( dfd.resolve );
             _._current = params.to;

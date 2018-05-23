@@ -63,7 +63,3 @@ Array.prototype.getRandom = function() {
 String.prototype.ucfirst = function() {
     return this.charAt( 0 ).toUpperCase() + this.slice( 1 );
 };
-
-
-// Queue
-!function(r){r.Queue=function(){var e=function(){this.promise=r(this).promise()};return e.prototype.append=function(){var e=arguments,t=e[0];if(!t||!jQuery.isFunction(t))throw new TypeError("1st parameter should be a function");var n=this,e=Array.prototype.slice.call(e,1);return this.promise=this.promise.pipe(function(){return r.Deferred(function(){/*try{*/return t.apply(this,e)/*}catch(i){return this.reject(i),n.promise=r(n).promise()}*/}).promise()})},function(){return new e}}()}(jQuery);

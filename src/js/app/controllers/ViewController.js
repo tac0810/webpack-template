@@ -3,7 +3,7 @@ export default class ViewController {
         return this._resizeTrigger;
     }
 
-    set resizeTrigger(value) {
+    set resizeTrigger( value ) {
         this._resizeTrigger = value;
     }
 
@@ -21,24 +21,36 @@ export default class ViewController {
      * @public
      */
     viewWillLoad() {
+        console.log('viewWillLoad');
     }
 
     /**
      * @public
      */
     viewDidLoad() {
+        console.log('viewDidLoad');
     }
 
     /**
      * @public
      */
     viewWillAppear() {
+        console.log('viewWillAppear');
     }
 
     /**
      * @public
      */
     viewDidAppear() {
+        console.log('viewDidAppear');
+    }
+
+    viewWillDisappear(){
+        console.log('viewWillDisappear');
+    }
+
+    viewDidDisappear(){
+        console.log('viewDidDisappear');
     }
 
     /**
@@ -52,6 +64,6 @@ export default class ViewController {
      * @param st {number}
      * @public
      */
-    scroll(st) {
+    scroll( st ) {
     }
 }
