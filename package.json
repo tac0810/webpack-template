@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack -p --config ./_config/webpack.config.js --env all",
-    "watch": "cross-env NODE_ENV=development webpack -d --watch --config ./_config/webpack.config.js"
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "watch": "cross-env NODE_ENV=development webpack -d --watch"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
@@ -36,5 +36,8 @@
   },
   "private": true,
   "author": "tac0810",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv-webpack": "^1.7.0"
+  }
 }
