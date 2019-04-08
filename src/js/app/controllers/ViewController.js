@@ -1,14 +1,18 @@
 export default class ViewController {
 	constructor() {
-		if ( 'development' === process.env.NODE_ENV ) {
-			console.log( this.constructor.name );
+		if ('development' === process.env.NODE_ENV) {
+			console.log(this.constructor.name);
 		}
 	}
 
 	/**
 	 * @public
 	 */
-	viewWillLoad() {}
+	viewWillLoad() {
+		this.stage = new window.Stage()
+		this.stage.setup()
+		this.stage.render()
+	}
 
 	/**
 	 * @public
