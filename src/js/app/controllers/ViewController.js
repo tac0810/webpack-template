@@ -1,54 +1,39 @@
 export default class ViewController {
-    constructor() {
-    }
+	constructor() {
+		if ( 'development' === process.env.NODE_ENV ) {
+			console.log( this.constructor.name );
+		}
+	}
 
-    /**
-     * @public
-     */
-    viewWillLoad() {
-        console.log('viewWillLoad');
-    }
+	/**
+	 * @public
+	 */
+	viewWillLoad() {}
 
-    /**
-     * @public
-     */
-    viewDidLoad() {
-        console.log('viewDidLoad');
-    }
+	/**
+	 * @public
+	 */
+	viewDidLoad() {}
 
-    /**
-     * @public
-     */
-    viewWillAppear() {
-        console.log('viewWillAppear');
-    }
+	/**
+	 * @public
+	 */
+	viewWillAppear() {}
 
-    /**
-     * @public
-     */
-    viewDidAppear() {
-        console.log('viewDidAppear');
-    }
+	/**
+	 * @public
+	 */
+	viewDidAppear() {}
 
-    viewWillDisappear(){
-        console.log('viewWillDisappear');
-    }
+	/**
+	 * @public
+	 */
+	resize() {}
 
-    viewDidDisappear(){
-        console.log('viewDidDisappear');
-    }
-
-    /**
-     * @public
-     */
-    resize() {
-    }
-
-    /**
-     *
-     * @param st {number}
-     * @public
-     */
-    scroll( st ) {
-    }
+	/**
+	 *
+	 * @param st {number}
+	 * @public
+	 */
+	scroll(st) {}
 }

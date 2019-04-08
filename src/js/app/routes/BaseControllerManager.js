@@ -1,5 +1,5 @@
 export default class BaseControllerManager {
-	constructor(ViewControllers) {
+	constructor( ViewControllers ) {
 
 		/**
 		 *
@@ -22,13 +22,13 @@ export default class BaseControllerManager {
 	 * @param ID
 	 * @param content
 	 */
-	add(ID = null, content) {
+	add( ID = null, content ) {
 
-		if (typeof ID === 'string' && ID === 'null') {
+		if ( typeof ID === 'string' && ID === 'null' ) {
 			ID = null;
 		}
 
-		this._controllers.unshift(this.getController(ID, content));
+		this._controllers.unshift( this.getController( ID, content ) );
 	}
 
 	pop() {
@@ -44,13 +44,13 @@ export default class BaseControllerManager {
 	 * @param type
 	 * @returns {*}
 	 */
-	use(type) {
-		if ('prev' === type) {
-			return this._controllers[1];
+	use( type ) {
+		if ( 'prev' === type ) {
+			return this._controllers[ 1 ];
 		}
 
-		if ('current' === type) {
-			return this._controllers[0];
+		if ( 'current' === type ) {
+			return this._controllers[ 0 ];
 		}
 
 		return false;
@@ -61,17 +61,17 @@ export default class BaseControllerManager {
 	 * @param ID
 	 * @param content
 	 */
-	getController(ID = null, content = null) {
+	getController( ID = null, content = null ) {
 
 		let controller = null;
-		if (ID !== null && isSet(this._VC[ID])) {
-			controller = new this._VC[ID](content);
-		} else if (content !== null && isSet(this._VC[content.attr('data-use-controller')])) {
-			controller = new this._VC[content.attr('data-use-controller')](content);
-		} else if (content !== null && isSet(this._VC[content.attr('id')])) {
-			controller = new this._VC[content.attr('id')](content);
+		if ( ID !== null && isSet( this._VC[ ID ] ) ) {
+			controller = new this._VC[ ID ]( content );
+		} else if ( content !== null && isSet( this._VC[ content.attr( 'data-use-controller' ) ] ) ) {
+			controller = new this._VC[ content.attr( 'data-use-controller' ) ]( content );
+		} else if ( content !== null && isSet( this._VC[ content.attr( 'id' ) ] ) ) {
+			controller = new this._VC[ content.attr( 'id' ) ]( content );
 		} else {
-			controller = new this._VC['default'](content);
+			controller = new this._VC[ 'default' ]( content );
 		}
 
 		return controller;

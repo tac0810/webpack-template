@@ -1,9 +1,40 @@
 import 'js/_header';
 
-import App from "./app/App";
-import FxRouter from "./app/routes/FxRouter";
-import VcRouter from "./app/routes/VcRouter";
+import routes from 'js/app/routes/routes';
+import BaseControllerManager from "js/app/routes/BaseControllerManager";
 
-window.APP = new App( FxRouter, VcRouter, true );
-APP.debug = process.env.NODE_ENV === 'development';
-APP.boot();
+
+
+/**
+ * @type {ViewController}
+ */
+let viewController = new BaseControllerManager( routes ).getController( document.body.getAttribute( 'id' ) );
+
+window.addEventListener( 'DOMContentLoaded', function() {
+	viewController.viewWillLoad();
+}, false );
+
+window.addEventListener( 'load', function() {
+	viewController.viewDidLoad();
+
+	if ( viewController.resizeTrigger ) {
+		viewController.resize();
+	}
+
+	setTimeout( () => {
+		viewController.viewWillAppear();
+	}, 400 );
+
+	setTimeout( () => {
+		viewController.viewDidAppear();
+	}, 1000 );
+
+}, false );
+
+window.addEventListener( 'resize', function() {
+	viewController.resize();
+}, false );
+
+window.addEventListener( 'scroll', function() {
+	viewController.scroll( window.pageYOffset || document.documentElement.scrollTop );
+}, false );
