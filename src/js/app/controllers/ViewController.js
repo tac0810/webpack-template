@@ -7,6 +7,10 @@ export default class ViewController {
      */
     viewWillLoad() {
         console.log('viewWillLoad');
+
+        this.stage = new window.Stage()
+        this.stage.setup()
+        this.stage.render()
     }
 
     /**
