@@ -5,7 +5,7 @@ const CONFIG = require('./config');
 
 module.exports = {
 	context: CONFIG.SRC,
-	entry: [CONFIG.SRC + '/sass/index.sass'],
+	entry: [CONFIG.SRC + '/sass/entry.sass'],
 	resolve: {
 		alias: {
 			'img': path.resolve(CONFIG.DIST + '/img')
