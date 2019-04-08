@@ -1,3 +1,2 @@
-
-@function ratio($a,$b)
-  @return $a*100/$b + %
+@function ratio($a, $b, $c: 100%)
+  @return $a*$c/$b

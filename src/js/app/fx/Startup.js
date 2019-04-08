@@ -31,7 +31,6 @@ export default class Startup {
                 controllerManager.use( 'current' ).viewWillLoad();
                 controllerManager.use( 'current' ).viewDidLoad();
                 controllerManager.use( 'current' ).viewWillAppear();
-                controllerManager.use( 'current' ).viewDidAppear();
                 Schedule.wait( PROCESS_TIME ).then( resolve );
             } );
 
