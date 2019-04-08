@@ -1,80 +1,80 @@
 export default class BaseControllerManager {
-    constructor( ViewControllers ) {
+	constructor(ViewControllers) {
 
-        /**
-         *
-         * @type {Array}
-         * @private
-         */
-        this._VC = ViewControllers;
+		/**
+		 *
+		 * @type {Array}
+		 * @private
+		 */
+		this._VC = ViewControllers;
 
-        /**
-         *
-         * @type {Array}
-         * @private
-         */
-        this._controllers = [];
+		/**
+		 *
+		 * @type {Array}
+		 * @private
+		 */
+		this._controllers = [];
 
-    }
+	}
 
-    /**
-     *
-     * @param ID
-     * @param content
-     */
-    add( ID = null, content ) {
+	/**
+	 *
+	 * @param ID
+	 * @param content
+	 */
+	add(ID = null, content) {
 
-        if ( typeof ID === 'string' && ID === 'null' ) {
-            ID = null;
-        }
+		if (typeof ID === 'string' && ID === 'null') {
+			ID = null;
+		}
 
-        this._controllers.unshift( this.getController( ID, content ) );
-    }
+		this._controllers.unshift(this.getController(ID, content));
+	}
 
-    pop() {
-        this._controllers.pop();
-    }
+	pop() {
+		this._controllers.pop();
+	}
 
-    shift() {
-        this._controllers.shift();
-    }
+	shift() {
+		this._controllers.shift();
+	}
 
-    /**
-     *
-     * @param type
-     * @returns {*}
-     */
-    use( type ) {
-        if ( 'prev' === type ) {
-            return this._controllers[ 1 ];
-        }
+	/**
+	 *
+	 * @param type
+	 * @returns {*}
+	 */
+	use(type) {
+		if ('prev' === type) {
+			return this._controllers[1];
+		}
 
-        if ( 'current' === type ) {
-            return this._controllers[ 0 ];
-        }
+		if ('current' === type) {
+			return this._controllers[0];
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     *
-     * @param ID
-     * @param content
-     */
-    getController( ID = null, content = null ) {
+	/**
+	 *
+	 * @param ID
+	 * @param content
+	 */
+	getController(ID = null, content = null) {
 
-        var controller = null;
-        if ( ID !== null && ( this._VC[ ID ] !== null && this._VC[ ID ] !== undefined ) ) {
-            controller = new this._VC[ ID ]( content );
-        } else if ( content !== null && isSet( this._VC[ content.attr( 'data-use-controller' ) ] ) ) {
-            controller = new this._VC[ content.attr( 'data-use-controller' ) ]( content );
-        } else if ( content !== null && isSet( this._VC[ content.attr( 'id' ) ] ) ) {
-            controller = new this._VC[ content.attr( 'id' ) ]( content );
-        } else {
-            controller = new this._VC[ 'default' ]( content );
-        }
+		var controller = null;
+		if (ID !== null && (this._VC[ID] !== null && this._VC[ID] !== undefined)) {
+			controller = new this._VC[ID](content);
+		} else if (content !== null && isSet(this._VC[content.attr('data-use-controller')])) {
+			controller = new this._VC[content.attr('data-use-controller')](content);
+		} else if (content !== null && isSet(this._VC[content.attr('id')])) {
+			controller = new this._VC[content.attr('id')](content);
+		} else {
+			controller = new this._VC['default'](content);
+		}
 
-        return controller;
-    }
+		return controller;
+	}
 
 }

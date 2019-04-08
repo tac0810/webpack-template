@@ -1,4 +1,4 @@
-import UserAgent from 'js/modules/UserAgent';
+import UserAgent from 'js/utils/UserAgent';
 
 if ( process.env.NODE_ENV === 'development' ) {
     // setTimeout(console.log.bind(console,'%cTHIS SOURCE IS DEVELOPMENT MODE.','color: #F8BBD0;background-color: #E91E63;border:6px solid #E91E63;'));
@@ -27,39 +27,4 @@ if ( window.OTHER ) {
 }
 
 window.BREAK_POINT = 600;
-
-/**
- *
- * @param any
- * @return {Boolean}
- */
-window.isSet = any => any !== undefined && any !== null;
-
-/**
- *
- * @return {Boolean}
- */
-window.overTheBreakPoint = () => BREAK_POINT < window.innerWidth;
-
-/**
- *
- * @param min
- * @param max
- * @return {number}
- */
-Math.randomRange = function( min, max ) {
-    return Math.floor( Math.random() * (max - min) + min );
-};
-
-/**
- *
- * @return {*}
- */
-Array.prototype.getRandom = function() {
-    return this[ Math.floor( Math.random() * this.length ) ]
-};
-
-
-String.prototype.ucfirst = function() {
-    return this.charAt( 0 ).toUpperCase() + this.slice( 1 );
-};
+import './extensions';
