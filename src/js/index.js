@@ -1,9 +1,11 @@
-import 'js/_header';
+import './_header';
+import './extensions';
 import Delegate from "./Delegate";
 
 const delegate = new Delegate()
 
 window.addEventListener('DOMContentLoaded', function() {
+	delegate.projectInit()
 	delegate.willLoad()
 })
 
@@ -11,8 +13,7 @@ window.addEventListener('load', function() {
 	delegate.didLoad()
 })
 
-let resizeEvent = window.OTHER ? "resize" : "orientationchange";
-window.addEventListener(resizeEvent, function() {
+window.addEventListener(window.OTHER ? 'resize' : 'orientationchange', function() {
 	delegate.resize()
 })
 

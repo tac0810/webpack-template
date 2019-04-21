@@ -1,56 +1,71 @@
 export default class ViewController {
-    constructor() {
-    }
+	constructor() {
+		console.log(this.constructor.name);
+	}
 
-    /**
-     * @public
-     */
-    viewWillLoad() {
-        console.log(this.constructor.name + ': viewWillLoad');
-    }
+	/**
+	 * @public
+	 */
+	projectInit() {
+		console.log(this.constructor.name + ': projectInit');
 
-    /**
-     * @public
-     */
-    viewDidLoad() {
-        console.log(this.constructor.name + ': viewDidLoad');
-    }
+	}
 
-    /**
-     * @public
-     */
-    viewWillAppear() {
-        console.log(this.constructor.name + ': viewWillAppear');
-    }
+	/**
+	 * @public
+	 */
+	viewWillLoad() {
+		console.log(this.constructor.name + ': viewWillLoad');
+	}
 
-    /**
-     * @public
-     */
-    viewDidAppear() {
-        console.log(this.constructor.name + ': viewDidAppear');
-    }
+	/**
+	 * @public
+	 */
+	viewDidLoad() {
+		console.log(this.constructor.name + ': viewDidLoad');
+	}
 
-    viewWillDisappear(){
-        console.log(this.constructor.name + ': viewWillDisappear');
-    }
+	/**
+	 * @public
+	 */
+	viewWillAppear() {
+		console.log(this.constructor.name + ': viewWillAppear');
+	}
 
-    viewDidDisappear(){
-        console.log(this.constructor.name + ': viewDidDisappear');
-    }
+	/**
+	 * @public
+	 */
+	viewDidAppear() {
+		console.log(this.constructor.name + ': viewDidAppear');
+	}
 
-    /**
-     * @public
-     */
-    resize() {
-        console.log(this.constructor.name + ': resize', window.innerWidth);
-    }
+	/**
+	 * @public
+	 */
+	viewWillDisappear() {
+		console.log(this.constructor.name + ': viewWillDisappear');
+	}
 
-    /**
-     *
-     * @param st {number}
-     * @public
-     */
-    scroll( st ) {
-        console.log(this.constructor.name + ': scroll', st);
-    }
+	/**
+	 * @public
+	 */
+	viewDidDisappear() {
+		console.log(this.constructor.name + ': viewDidDisappear');
+	}
+
+	/**
+	 * @public
+	 */
+	resize() {
+		console.log(this.constructor.name + ': resize', window.innerWidth);
+	}
+
+	/**
+	 *
+	 * @param st {number}
+	 * @public
+	 */
+	scroll(st) {
+		console.log(this.constructor.name + ': scroll', st);
+	}
 }
