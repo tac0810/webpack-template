@@ -66,10 +66,10 @@ export default class BaseControllerManager {
 		var controller = null;
 		if (ID !== null && (this._VC[ID] !== null && this._VC[ID] !== undefined)) {
 			controller = new this._VC[ID](content);
-		} else if (content !== null && isSet(this._VC[content.attr('data-use-controller')])) {
-			controller = new this._VC[content.attr('data-use-controller')](content);
-		} else if (content !== null && isSet(this._VC[content.attr('id')])) {
-			controller = new this._VC[content.attr('id')](content);
+		} else if (content !== null && isSet(this._VC[content.getAttribute('data-use-controller')])) {
+			controller = new this._VC[content.getAttribute('data-use-controller')](content);
+		} else if (content !== null && isSet(this._VC[content.getAttribute('id')])) {
+			controller = new this._VC[content.getAttribute('id')](content);
 		} else {
 			controller = new this._VC['default'](content);
 		}

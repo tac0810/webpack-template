@@ -1,9 +1,22 @@
 import 'js/_header';
+import Delegate from "./Delegate";
 
-import App from "./app/App";
-import FxRouter from "./app/routes/FxRouter";
-import VcRouter from "./app/routes/VcRouter";
+const delegate = new Delegate()
 
-window.APP = new App( FxRouter, VcRouter, true );
-APP.debug = process.env.NODE_ENV === 'development';
-APP.boot();
+window.addEventListener('DOMContentLoaded', function() {
+	delegate.willLoad()
+})
+
+window.addEventListener('load', function() {
+	delegate.didLoad()
+})
+
+let resizeEvent = window.OTHER ? "resize" : "orientationchange";
+window.addEventListener(resizeEvent, function() {
+	delegate.resize()
+})
+
+window.addEventListener('scroll', function() {
+	delegate.scroll(window.pageYOffset || document.documentElement.scrollTop)
+})
+

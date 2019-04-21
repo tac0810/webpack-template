@@ -6,42 +6,43 @@ export default class ViewController {
      * @public
      */
     viewWillLoad() {
-        console.log('viewWillLoad');
+        console.log(this.constructor.name + ': viewWillLoad');
     }
 
     /**
      * @public
      */
     viewDidLoad() {
-        console.log('viewDidLoad');
+        console.log(this.constructor.name + ': viewDidLoad');
     }
 
     /**
      * @public
      */
     viewWillAppear() {
-        console.log('viewWillAppear');
+        console.log(this.constructor.name + ': viewWillAppear');
     }
 
     /**
      * @public
      */
     viewDidAppear() {
-        console.log('viewDidAppear');
+        console.log(this.constructor.name + ': viewDidAppear');
     }
 
     viewWillDisappear(){
-        console.log('viewWillDisappear');
+        console.log(this.constructor.name + ': viewWillDisappear');
     }
 
     viewDidDisappear(){
-        console.log('viewDidDisappear');
+        console.log(this.constructor.name + ': viewDidDisappear');
     }
 
     /**
      * @public
      */
     resize() {
+        console.log(this.constructor.name + ': resize', window.innerWidth);
     }
 
     /**
@@ -50,5 +51,6 @@ export default class ViewController {
      * @public
      */
     scroll( st ) {
+        console.log(this.constructor.name + ': scroll', st);
     }
 }
